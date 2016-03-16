@@ -213,8 +213,9 @@ void getmatrix(float pe[])
    M[2][2] = cos(theta)*cos(phi);
 }
 //calculates wanted position of platform attachment poins using calculated rotation matrix
-//and translation vector
-void getrxp(float pe[])
+//and translation vector\
+//float pe[]
+void getrxp()
 {
    for(int i=0;i<6;i++){
       rxp[0][i] = T[0]+M[0][0]*(re[0][i])+M[0][1]*(re[1][i])+M[0][2]*(re[2][i]);
@@ -237,7 +238,7 @@ unsigned char setPos(float pe[]){
     {
         getT(pe);
         getmatrix(pe);
-        getrxp(pe);
+        getrxp();
         theta_a[i]=getAlpha(&i);
         if(i==INV1||i==INV2||i==INV3){
             servo_pos[i] = constrain(zero[i] - (theta_a[i])*servo_mult, MIN,MAX);
